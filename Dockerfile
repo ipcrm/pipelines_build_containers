@@ -14,7 +14,8 @@ RUN useradd -ms /bin/bash distelli
 WORKDIR /home/distelli
 
 # Install JDK8 and maven
-RUN sudo apt-get install -y software-properties-common python-software-properties \
+RUN sudo apt-get update \ 
+    && sudo apt-get install -y software-properties-common python-software-properties \
     && sudo add-apt-repository ppa:openjdk-r/ppa \
     && sudo apt-get update \
     && sudo apt-get install -y openjdk-8-jdk \
