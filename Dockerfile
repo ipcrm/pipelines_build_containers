@@ -8,13 +8,13 @@ FROM ubuntu:14.04
 USER root
 
 # Create Distelli user
-RUN useradd -ms /bin/bash distelli 
+RUN useradd -ms /bin/bash distelli
 
 # Set /home/distelli as the working directory
 WORKDIR /home/distelli
 
 # Install JDK8 and maven
-RUN sudo apt-get update \ 
+RUN sudo apt-get update \
     && sudo apt-get install -y software-properties-common python-software-properties curl \
     && sudo add-apt-repository ppa:openjdk-r/ppa \
     && sudo apt-get update \
@@ -22,7 +22,7 @@ RUN sudo apt-get update \
     && curl -o maven.tar.gz \
     'http://mirrors.ocf.berkeley.edu/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz' \
     && sudo tar -C /usr/src -zxvf maven.tar.gz \
-    && sudo ln -s /usr/src/apache-maven-3.5.2/bin/* /usr/local/bin/ \
+    && sudo ln -s /usr/src/apache-maven-3.5.2/bin/* /usr/local/bin/
 
 # Install prerequisites. This provides me with the essential tools for building with.
 # Note. You don't need git or mercurial.
