@@ -18,7 +18,8 @@ RUN sudo apt-get update \
     && sudo apt-get install -y software-properties-common python-software-properties curl \
     && sudo add-apt-repository ppa:openjdk-r/ppa \
     && sudo apt-get update \
-    && sudo apt-get install -y openjdk-8-jdk \
+    && sudo apt-get install -y openjdk-8-jdk ca-certificates-java \
+    && sudo /var/lib/dpkg/info/ca-certificates-java.postinst configure \
     && curl -o maven.tar.gz \
     'http://mirrors.ocf.berkeley.edu/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz' \
     && sudo tar -C /usr/src -zxvf maven.tar.gz \
