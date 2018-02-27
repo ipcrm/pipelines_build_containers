@@ -13,6 +13,16 @@ RUN useradd -ms /bin/bash distelli
 # Set /home/distelli as the working directory
 WORKDIR /home/distelli
 
+# Install JDK8 and maven
+RUN sudo apt-get install -y software-properties-common python-software-properties \
+    && sudo add-apt-repository ppa:openjdk-r/ppa \
+    && sudo apt-get update \
+    && sudo apt-get install -y openjdk-8-jdk \
+    && curl -o maven.tar.gz \
+    'http://mirrors.ocf.berkeley.edu/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz' \
+    && sudo tar -C /usr/src -zxvf maven.tar.gz \
+    && sudo ln -s /usr/src/apache-maven-3.5.2/bin/* /usr/local/bin/ \
+
 # Install prerequisites. This provides me with the essential tools for building with.
 # Note. You don't need git or mercurial.
 RUN sudo apt-get update -y \
@@ -44,16 +54,6 @@ VOLUME /var/lib/docker
 ENV GOSU_VERSION 1.9
 RUN sudo curl -o /bin/gosu -sSL "https://github.com/tianon/gosu/releases/download/1.9/gosu-$(dpkg --print-architecture)" \
      && sudo chmod +x /bin/gosu
-
-# Install JDK8 and maven
-RUN sudo apt-get install software-properties-common python-software-properties \
-    && sudo add-apt-repository ppa:openjdk-r/ppa \
-    && sudo apt-get update \
-    && sudo apt-get install openjdk-8-jdk \
-    && curl -o maven.tar.gz \
-    'http://mirrors.ocf.berkeley.edu/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz' \
-    && sudo tar -C /usr/src -zxvf maven.tar.gz \
-    && sudo ln -s /usr/src/apache-maven-3.5.2/bin/* /usr/local/bin/ \
 
 USER root
 
