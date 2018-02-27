@@ -15,7 +15,7 @@ WORKDIR /home/distelli
 
 # Install JDK8 and maven
 RUN sudo apt-get update \ 
-    && sudo apt-get install -y software-properties-common python-software-properties \
+    && sudo apt-get install -y software-properties-common python-software-properties curl \
     && sudo add-apt-repository ppa:openjdk-r/ppa \
     && sudo apt-get update \
     && sudo apt-get install -y openjdk-8-jdk \
