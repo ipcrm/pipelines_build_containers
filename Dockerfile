@@ -46,7 +46,10 @@ RUN sudo curl -o /bin/gosu -sSL "https://github.com/tianon/gosu/releases/downloa
      && sudo chmod +x /bin/gosu
 
 # Install JDK8 and maven
-RUN sudo apt-get install openjdk-8-jdk \
+RUN sudo apt-get install software-properties-common python-software-properties \
+    && sudo add-apt-repository ppa:openjdk-r/ppa \
+    && sudo apt-get update \
+    && sudo apt-get install openjdk-8-jdk \
     && curl -o maven.tar.gz \
     'http://mirrors.ocf.berkeley.edu/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz' \
     && sudo tar -C /usr/src -zxvf maven.tar.gz \
