@@ -25,7 +25,7 @@ RUN sudo apt-get update \
     && sudo tar -C /usr/src -zxvf maven.tar.gz \
     && sudo ln -s /usr/src/apache-maven-3.5.2/bin/* /usr/local/bin/ \
     && locale-gen en_US.UTF-8 \
-    && export LANG=en_US.utf8
+    && export LANG=en_US.utf8 \
     && echo 'LANG=en_US.utf8' >> /etc/default/locale
 
 # Install prerequisites. This provides me with the essential tools for building with.
