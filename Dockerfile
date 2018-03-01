@@ -20,13 +20,15 @@ RUN sudo apt-get update \
     && sudo apt-get update \
     && sudo apt-get install -y openjdk-8-jdk ca-certificates-java \
     && sudo /var/lib/dpkg/info/ca-certificates-java.postinst configure \
+    && sudo update-java-alternatives -s java-1.8.0-openjdk-amd64 \
     && curl -o maven.tar.gz \
     'http://mirrors.ocf.berkeley.edu/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz' \
     && sudo tar -C /usr/src -zxvf maven.tar.gz \
     && sudo ln -s /usr/src/apache-maven-3.5.2/bin/* /usr/local/bin/ \
     && locale-gen en_US.UTF-8 \
     && export LANG=en_US.utf8 \
-    && echo 'LANG=en_US.utf8' >> /etc/default/locale
+    && echo 'LANG=en_US.utf8' >> /etc/default/locale \
+    && echo 'export LANG=en_US.utf8' >> /etc/profile
 
 # Install prerequisites. This provides me with the essential tools for building with.
 # Note. You don't need git or mercurial.
